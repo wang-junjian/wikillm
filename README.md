@@ -4,10 +4,6 @@
 
 本项目基于 **Andrej Karpathy** 提出的理念构建。详见：[LLM Knowledge Bases](https://x.com/karpathy/status/2039805659525644595)
 
-![技能界面](images/skill.png)
-
-![Obsidian 索引](images/obsidian-index.png)
-
 ## 项目概述
 
 WikiLLM 的工作流包括：
@@ -47,7 +43,7 @@ wikillm/
 
 ## 当前内容
 
-本 wiki 当前包含关于 **Harness 工程**的综合知识库，基于以下来源编译：
+本 wiki 当前包含关于 **Harness Engineering**的综合知识库，基于以下来源编译：
 
 - OpenAI - Harness Engineering：在智能体优先的世界中利用 Codex
 - Anthropic - Harness design for long-running application development
@@ -65,6 +61,8 @@ wikillm/
 2. 在 Obsidian 中打开本仓库作为 vault
 3. 从 `wiki/INDEX.md` 开始探索
 
+![Obsidian 索引](images/obsidian-index.png)
+
 ### 使用技能
 
 本项目包含 Claude Code 技能用于生成 wiki：
@@ -73,6 +71,8 @@ wikillm/
 # 在 Claude Code 中
 /skills wiki 编译
 ```
+
+![技能界面](images/skill.png)
 
 详细说明请参阅 [skills/SKILL.md](skills/SKILL.md)。
 
