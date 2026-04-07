@@ -2,6 +2,12 @@
 
 利用 LLM 构建个人知识库的系统。WikiLLM 将原始素材"编译"成结构化、交叉链接的高质量中文 Wiki，可在 Obsidian 中查看。
 
+本项目基于 **Andrej Karpathy** 提出的理念构建。详见：[LLM Knowledge Bases](https://x.com/karpathy/status/2039805659525644595)
+
+![技能界面](images/skill.png)
+
+![Obsidian 索引](images/obsidian-index.png)
+
 ## 项目概述
 
 WikiLLM 的工作流包括：
