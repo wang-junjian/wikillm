@@ -1,84 +1,72 @@
 ---
-title: WikiLLM 知识库首页
-tags: [首页, 索引, 导航]
-last_updated: 2026-04-07
+title: "WikiLLM 知识库索引"
+source: "Externalization in LLM Agents: A Unified Review"
+last_updated: 2026-04-11
 ---
 
-# WikiLLM 知识库
+# WikiLLM 知识库索引
 
-欢迎来到 **WikiLLM**——一个关于 [[Harness-Engineering|Harness 工程]] 的中文知识库。本 wiki 基于多篇权威来源编译而成，旨在为 AI 智能体时代的软件工程提供系统化的指南。
+欢迎来到 WikiLLM 知识库！本 wiki 基于论文《Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering》编译而成。
 
-> **Harness 工程**是设计和实现使 AI 智能体可靠工作的系统的新学科。如果说 2025 年是 AI 智能体验证它们能够编写代码的一年，那么 2026 年就是我们认识到**智能体不是难点——Harness 才是**的一年。
+## 快速导航
 
----
+- [[Glossary|术语表]] - 核心概念定义与对照
+- [[Externalization-in-LLM-Agents|LLM Agent 中的外部化]] - 核心理论框架
+- [[Harness-Engineering|Harness 工程]] - 统一集成层
 
-## 📚 核心概念
+## 核心概念
 
-- [[Harness-Engineering|Harness 工程]] - Harness 工程的完整概述，包括三大支柱、为什么现在重要、以及实践中的方法
-- [[Context-Engineering|上下文工程]] - 如何确保智能体在正确的时间获得正确的信息
-- [[Architectural-Constraints|架构约束]] - 如何机械地强制执行好代码的样子，而不是仅仅告诉智能体"写好代码"
-- [[Anthropic-Harness-Design|Anthropic Harness 设计]] - Anthropic 的三智能体架构：Planner、Generator、Evaluator
-- [[Self-Verification|自我验证]] - 让智能体通过构建-验证循环自我改进的技术
+本知识库围绕 LLM Agent 的**外部化框架**组织，涵盖四大支柱：
 
----
+### 1. 外部化理论
+- [[Externalization-in-LLM-Agents|LLM Agent 中的外部化]] - 外部化作为组织原则
+- [[From-Weights-to-Context-to-Harness|从权重到上下文到 Harness]] - 历史演进路径
 
-## 🛠️ 实践指南
+### 2. 三大外部化维度
+- [[Memory-Systems|记忆系统]] - 跨时间外部化状态
+- [[Skill-Systems|技能系统]] - 外部化程序专长
+- [[Agent-Protocols|智能体协议]] - 外部化交互结构
 
-- [[Mitchellh-Adoption-Journey|Mitchellh AI 采用之旅]] - HashiCorp 创始人从怀疑论者到深度用户的六个阶段
-- [[Building-Your-First-Harness|构建你的第一个 Harness]] - 从个人开发者到工程组织的三级实用框架
+### 3. Harness 工程
+- [[Harness-Engineering|Harness 工程]] - 统一协调层
+- [[Harness-Engineering-Complete-Guide|Harness 工程完整指南]] - NxCode 的完整 Harness 工程指南
+- [[Harness-Engineering-for-Coding-Agent-Users|面向编码智能体用户的 Harness 工程]] - Martin Fowler 的指南与传感器框架
+- [[Harness-Engineering-First-Thoughts|Harness 工程：最初的思考]] - Martin Fowler 团队的早期备忘录
+- [[Meta-Harness|Meta-Harness：模型 Harness 的端到端优化]] - 斯坦福/MIT 的自动 Harness 优化研究
 
----
+### 4. 实践指南
+- [[Long-Running-Harness-Design|长运行应用的 Harness 设计]] - Anthropic 团队的多 Agent 架构实践
+- [[OpenAI-Codex-Harness-Engineering|OpenAI Codex Harness 工程]] - 完全由智能体生成代码的产品开发实践
+- [[Mitchellh-AI-Adoption-Journey|Mitchell Hashimoto 的 AI 采用之旅]] - HashiCorp 创始人从怀疑论者到深度用户的六个阶段
+- [[LangChain-Harness-Engineering|LangChain Harness 工程实践]] - 从 Top 30 到 Top 5 的 Harness 优化经验
+- [[Managed-Agents-Decoupling-Brain-from-Hands|Managed Agents：将大脑与手分离]] - Anthropic 的托管智能体架构设计
+- [[MiniMax-M27-Self-Evolution|MiniMax M2.7：开启模型的自我进化]] - 模型参与迭代自己的实践
 
-## 📖 学习路径
+## 学习路径
 
 ### 初学者路径
+1. 从 [[Externalization-in-LLM-Agents|LLM Agent 中的外部化]] 开始，理解核心论点
+2. 阅读 [[From-Weights-to-Context-to-Harness|从权重到上下文到 Harness]]，了解历史背景
+3. 深入三大外部化维度：[[Memory-Systems|记忆]]、[[Skill-Systems|技能]]、[[Agent-Protocols|协议]]
+4. 最后学习 [[Harness-Engineering|Harness 工程]] 如何将它们统一
 
-1. 首先阅读 [[Harness-Engineering|Harness 工程]] 获得概览
-2. 然后阅读 [[Mitchellh-Adoption-Journey|Mitchellh AI 采用之旅]] 了解个人采用路径
-3. 最后阅读 [[Building-Your-First-Harness|构建你的第一个 Harness]] 开始实践
+### 架构师路径
+1. 直接阅读 [[Harness-Engineering|Harness 工程]] 了解六大分析维度
+2. 参考 [[Externalization-in-LLM-Agents|外部化理论]] 作为理论基础
+3. 根据需要深入各模块细节
 
-### 深入学习路径
+## 最新研究
 
-1. 从 [[Anthropic-Harness-Design|Anthropic Harness 设计]] 开始了解前沿架构
-2. 深入研究 [[Context-Engineering|上下文工程]] 和 [[Architectural-Constraints|架构约束]]
-3. 学习 [[Self-Verification|自我验证]] 技术让智能体自我改进
+本知识库基于 2026 年 4 月发表的最新综述论文和实践报告，涵盖：
+- 记忆架构的四代演进（单片上下文 → 检索存储 → 分层编排 → 自适应系统）
+- 技能系统从工具使用到能力包的演变
+- 协议生态系统（MCP、A2A、ACP、ANP、A2UI 等）
+- Harness 工程的六大分析维度
+- 多 Agent 架构实践（Planner-Generator-Evaluator 三 Agent 系统）
 
----
+## 相关研究
 
-## 🔗 快速导航
-
-- [[Glossary|术语表]] - 40+ 核心概念的中英对照和解释
-- [概念目录](./concepts/) - 所有核心概念文章
-- [实践目录](./practices/) - 所有实践指南文章
-
----
-
-## 📊 编译来源
-
-本知识库基于以下权威来源编译：
-
-1. **OpenAI** - Harness Engineering：在智能体优先的世界中利用 Codex
-2. **Anthropic** - Harness design for long-running application development
-3. **Martin Fowler** - Harness engineering for coding agent users
-4. **LangChain** - Improving Deep Agents with harness engineering
-5. **NxCode** - Harness Engineering: The Complete Guide
-6. **MiniMax** - MiniMax M2.7: Early Echoes of Self-Evolution
-7. **Mitchell Hashimoto** - My AI Adoption Journey
-
----
-
-## 💡 关于 WikiLLM
-
-WikiLLM 是一个利用 LLM 构建个人知识库的系统。本项目的核心原则是：
-
-- **LLM 编写和维护所有 wiki 数据**；手动编辑很少见
-- **用户探索和查询被归档回 wiki** 以增强它
-- **系统专注于 markdown 文件和 Obsidian 兼容格式**
-- **图像被下载到本地** 以便 LLM 轻松引用
-
-查看 [[Glossary|术语表]] 了解更多核心概念，或从 [[Harness-Engineering|Harness 工程]] 开始阅读！
-
----
-
-*最后更新：2026-04-07*  
-*本文档由 [[WikiLLM]] 自动生成*
+- 认知人工制品理论 (Norman, 1991)
+- 分布式认知 (Hutchins, 1995)
+- 互补策略 (Kirsh, 1995)
+- CoALA 架构

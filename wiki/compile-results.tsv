@@ -1,0 +1,12 @@
+raw_path	hash	last_modified	wiki_paths	compile_time	status
+raw/Externalization in LLM Agents A Unified Review of Memory, Skills, Protocols and Harness Engineering.md	sha256:initial	2026-04-11	wiki/concepts/Externalization-in-LLM-Agents.md,wiki/concepts/Harness-Engineering.md,wiki/concepts/Memory-Systems.md,wiki/concepts/Skill-Systems.md,wiki/concepts/Agent-Protocols.md,wiki/concepts/From-Weights-to-Context-to-Harness.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Harness design for long-running application development.md	sha256:initial	2026-04-11	wiki/practices/Long-Running-Harness-Design.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/工程技术：在智能体优先的世界中利用 Codex.md	sha256:initial	2026-04-11	wiki/practices/OpenAI-Codex-Harness-Engineering.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/My AI Adoption Journey.md	sha256:initial	2026-04-11	wiki/practices/Mitchellh-AI-Adoption-Journey.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Harness engineering for coding agent users.md	sha256:initial	2026-04-11	wiki/concepts/Harness-Engineering-for-Coding-Agent-Users.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Improving Deep Agents with harness engineering.md	sha256:initial	2026-04-11	wiki/practices/LangChain-Harness-Engineering.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Scaling Managed Agents Decoupling the brain from the hands.md	sha256:initial	2026-04-11	wiki/practices/Managed-Agents-Decoupling-Brain-from-Hands.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/MiniMax M2.7 开启模型的自我进化.md	sha256:initial	2026-04-11	wiki/practices/MiniMax-M27-Self-Evolution.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Harness Engineering The Complete Guide to Building Systems That Make AI Agents Actually Work (2026).md	sha256:initial	2026-04-11	wiki/concepts/Harness-Engineering-Complete-Guide.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Harness Engineering - first thoughts.md	sha256:initial	2026-04-11	wiki/concepts/Harness-Engineering-First-Thoughts.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
+raw/Meta-Harness End-to-End Optimization of Model Harnesses.md	sha256:initial	2026-04-11	wiki/concepts/Meta-Harness.md,wiki/INDEX.md,wiki/Glossary.md	2026-04-11	success
