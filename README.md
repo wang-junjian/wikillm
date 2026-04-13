@@ -69,6 +69,27 @@ wikillm/
 
 ![Obsidian 索引](images/obsidian-index.png)
 
+### 在 Web 浏览器中查看
+
+![](images/webui.jpeg)
+
+本项目包含一个 Next.js Web 应用，用于在浏览器中查看知识库：
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+然后访问 http://localhost:3000 即可查看。
+
+**Web 应用功能：**
+- Markdown 渲染，支持 GFM 格式
+- Obsidian 风格 wiki 链接解析（`[[Page|Label]]`）
+- 侧边栏导航，按分类组织页面
+- 图片资源支持
+- 响应式设计
+
 ### 使用技能
 
 本项目包含 Claude Code 技能用于生成 wiki：

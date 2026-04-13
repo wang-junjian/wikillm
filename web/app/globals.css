@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9fafb;
+  --foreground: #111827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.prose-wikillm h1 {
+  @apply text-3xl font-bold mb-6 mt-8 text-gray-900;
+}
+
+.prose-wikillm h2 {
+  @apply text-2xl font-semibold mb-4 mt-6 text-gray-800;
+}
+
+.prose-wikillm h3 {
+  @apply text-xl font-semibold mb-3 mt-5 text-gray-800;
+}
+
+.prose-wikillm p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose-wikillm ul {
+  @apply list-disc list-inside mb-4 space-y-1;
+}
+
+.prose-wikillm ol {
+  @apply list-decimal list-inside mb-4 space-y-1;
+}
+
+.prose-wikillm li {
+  @apply leading-relaxed;
+}
+
+.prose-wikillm a {
+  @apply text-blue-600 hover:text-blue-800 hover:underline;
+}
+
+.prose-wikillm blockquote {
+  @apply border-l-4 border-gray-300 pl-4 py-1 my-4 bg-gray-50 italic;
+}
+
+.prose-wikillm table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose-wikillm th {
+  @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+}
+
+.prose-wikillm td {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.prose-wikillm code {
+  @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.prose-wikillm pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-lg my-4 overflow-x-auto;
+}
+
+.prose-wikillm pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.prose-wikillm img {
+  @apply max-w-full h-auto rounded-lg my-4;
+}
