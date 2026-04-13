@@ -45,13 +45,19 @@ wikillm/
 
 本 wiki 当前包含关于 **Harness Engineering**的综合知识库，基于以下来源编译：
 
-- OpenAI - Harness Engineering：在智能体优先的世界中利用 Codex
-- Anthropic - Harness design for long-running application development
-- Martin Fowler - Harness engineering for coding agent users
-- LangChain - Improving Deep Agents with harness engineering
-- NxCode - Harness Engineering: The Complete Guide
-- MiniMax - MiniMax M2.7: Early Echoes of Self-Evolution
-- Mitchell Hashimoto - My AI Adoption Journey
+- [Externalization in LLM Agents: 智能体记忆/技能/协议/Harness工程统一综述](https://arxiv.org/html/2604.08224v1)
+- [Meta-Harness: 模型Harness的端到端优化](https://arxiv.org/html/2603.28052v1)
+- [Anthropic: 托管智能体的架构设计：脑手分离](https://www.anthropic.com/engineering/managed-agents)
+- [Anthropic: 长生命周期应用的Harness设计](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+- [OpenAI: 智能体优先世界中的Codex Harness工程](https://openai.com/zh-Hans-CN/index/harness-engineering/)
+- [OpenAI: 英文原版Harness工程指南](https://openai.com/index/harness-engineering/)
+- [MiniMax M2.7 模型自我进化发布公告](https://www.minimaxi.com/news/minimax-m27-zh)
+- [RedHat: AI辅助开发的结构化Harness工作流](https://developers.redhat.com/articles/2026/04/07/harness-engineering-structured-workflows-ai-assisted-development#the_fix__a_two_phase_workflow)
+- [Mitchell Hashimoto (HashiCorp创始人)的AI应用落地历程](https://mitchellh.com/writing/my-ai-adoption-journey)
+- [NxCode: Harness工程完整指南 2026](https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026)
+- [LangChain: 基于Harness工程优化深度智能体](https://blog.langchain.com/improving-deep-agents-with-harness-engineering/)
+- [Martin Fowler: 编码智能体用户的Harness工程实践](https://martinfowler.com/articles/harness-engineering.html)
+- [Martin Fowler: Harness工程早期思考笔记](https://martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html)
 
 ## 快速开始
 

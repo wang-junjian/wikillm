@@ -64,6 +64,10 @@ last_updated: 2026-04-11
 - Harness 工程的六大分析维度
 - 多 Agent 架构实践（Planner-Generator-Evaluator 三 Agent 系统）
 
+## Q&A 归档
+
+- [[What-is-Harness-Engineering-in-Simple-Terms|用通俗易懂的方式理解 Harness 工程]] - 科普风格的 Harness 工程简介
+
 ## 相关研究
 
 - 认知人工制品理论 (Norman, 1991)
