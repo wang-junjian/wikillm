@@ -71,8 +71,6 @@ wikillm/
 
 ### 在 Web 浏览器中查看
 
-![](images/webui.jpeg)
-
 本项目包含一个 Next.js Web 应用，用于在浏览器中查看知识库：
 
 ```bash
@@ -82,6 +80,8 @@ npm run dev
 ```
 
 然后访问 http://localhost:3000 即可查看。
+
+![](images/webui.jpeg)
 
 **Web 应用功能：**
 - Markdown 渲染，支持 GFM 格式
