@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { getAllPages } from "@/lib/wiki";
+import { wiki } from "@/lib/wiki";
 import { Sidebar } from "@/components/Sidebar";
 
 export default async function Home() {
-  const pages = await getAllPages();
-  const indexPage = pages.find(p => p.slug === "INDEX");
+  const snapshot = await wiki.scan();
+  const indexPage = await wiki.render("INDEX");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -31,7 +31,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <aside className="lg:col-span-1">
-            <Sidebar pages={pages} />
+            <Sidebar snapshot={snapshot} />
           </aside>
 
           {/* Main content */}

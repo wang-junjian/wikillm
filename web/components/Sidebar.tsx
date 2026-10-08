@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { getCategories, type WikiPage } from "@/lib/wiki";
+import type { WikiIndexSnapshot } from "@/lib/wiki";
 
 interface SidebarProps {
-  pages: WikiPage[];
+  snapshot: WikiIndexSnapshot;
   currentSlug?: string;
 }
 
-export function Sidebar({ pages, currentSlug }: SidebarProps) {
-  const categories = getCategories(pages);
-  const rootPages = pages.filter((p) => !p.category);
+export function Sidebar({ snapshot, currentSlug }: SidebarProps) {
+  const categories = [...snapshot.byCategory.keys()].sort();
+  const rootPages = snapshot.entries.filter((p) => !p.category);
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 sticky top-24">
@@ -27,22 +27,20 @@ export function Sidebar({ pages, currentSlug }: SidebarProps) {
                   {cat}
                 </span>
                 <ul className="ml-3 mt-1 space-y-1">
-                  {pages
-                    .filter((p) => p.category === cat)
-                    .map((page) => (
-                      <li key={page.slug}>
-                        <Link
-                          href={`/wiki/${page.slug}`}
-                          className={`text-sm block py-0.5 ${
-                            page.slug === currentSlug
-                              ? "text-blue-700 font-semibold"
-                              : "text-blue-600 hover:text-blue-800 hover:underline"
-                          }`}
-                        >
-                          {page.title}
-                        </Link>
-                      </li>
-                    ))}
+                  {(snapshot.byCategory.get(cat) ?? []).map((page) => (
+                    <li key={page.slug}>
+                      <Link
+                        href={`/wiki/${page.slug}`}
+                        className={`text-sm block py-0.5 ${
+                          page.slug === currentSlug
+                            ? "text-blue-700 font-semibold"
+                            : "text-blue-600 hover:text-blue-800 hover:underline"
+                        }`}
+                      >
+                        {page.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
             ))}
