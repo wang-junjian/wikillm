@@ -1,6 +1,6 @@
 ---
 name: wikillm
-description: Compiles raw documents into a structured, cross-linked Chinese Wiki knowledge base. Use when ingesting raw materials, answering questions about the wiki, or maintaining the wiki structure.
+description: Compiles raw documents into a structured, cross-linked Chinese Wiki knowledge base. Use when ingesting raw materials, answering questions about the wiki, or maintaining the wiki structure. 触发词：编译 wiki、增量编译、wiki 问答、归档问答、lint wiki。
 license: MIT
 metadata:
   version: "2.0"
@@ -27,7 +27,7 @@ metadata:
 
 - 人工不直接编写 Wiki，仅负责投放素材和发起查询
 - LLM 负责理解、重写、链接与维护
-- 适配工具：Obsidian（IDE 前端）
+- 消费前端：Obsidian 与 `web/`（Next.js 应用）**并行消费** wiki；文件命名与 frontmatter 约束对两者同时生效（详见 references/standards.md）
 
 ### 详细文档
 

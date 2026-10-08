@@ -2,7 +2,7 @@
 
 ## 标准文件系统架构
 
-严格遵循 I/O 分离原则，确保知识库的纯净度与可迁移性：
+严格遵循 I/O 分离原则，确保知识库的纯净度与可迁移性。wiki/ 同时被 **Obsidian** 与 **web/（Next.js 应用）** 两个前端消费；其中 `assets/` 与 `visual/` 在 web 端不作为 wiki 页面索引（visual/ 仅供 Obsidian 演示）。
 
 ```text
 📁 wikillm
@@ -63,23 +63,49 @@
 - 按"学术论文"、"概念文章"、"实践指南"等分类组织
 - 每次增量编译后更新
 
-## Wiki 文档元数据
+## Wiki 文档元数据（统一 schema）
 
-每个 wiki 文档的 YAML frontmatter 都包含 `raw_sources` 字段：
+两类页面各有一套 frontmatter 模板，所有引用处以此为准。两条 web 端硬约束：**`title` 必填**（索引与侧栏的显示名）、**YAML 必须合法**（解析失败的页面会从 web 索引中静默消失）。
+
+### 编译页（concepts/、practices/）
 
 ```yaml
 ---
-title: 文档标题
+title: 文档标题            # 必填
 source: [来源名称]
+tags:
+  - 标签
 raw_sources:
   - path: raw/source-file.md
     hash: "sha256:abc123..."
+confidence_score: 0.9
+last_updated: YYYY-MM-DD
+---
+```
+
+### Q&A 页（queries/）
+
+```yaml
+---
+title: "问题标题（用中文）"  # 必填
+source: "WikiLLM Q&A"
+tags:
+  - "Q&A"
+question: |
+  在这里记录原始问题
+last_updated: YYYY-MM-DD
 ---
 ```
 
 ## 常用命令
 
 ```bash
+# 增量扫描：输出 新增/已修改/未变更/已删除 清单及图片名冲突检查
+python3 -I skills/wikillm/scripts/scan-raw.py
+
+# 修复台账漂移：把占位或过期的 hash 回写为真实 SHA-256
+python3 -I skills/wikillm/scripts/scan-raw.py --write
+
 # 查看所有已编译文件
 cat wiki/compile-results.tsv
 

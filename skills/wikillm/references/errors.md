@@ -28,25 +28,34 @@
 
 **表现**：`[[Harness Engineering|Harness 工程]]` 而不是 `[[Harness-Engineering|Harness 工程]]`
 
-**避免**：参考 Wikilink 格式规范
+**避免**：参考 workflows.md 的"文件命名三条硬约束"——连字符分隔、不含 `--`、wiki 内裸文件名唯一
+
+## 错误 6：台账 hash 使用占位符
+
+**表现**：`compile-results.tsv` 中写入 `sha256:initial` 等占位 hash，导致增量编译无法判断文件是否修改
+
+**避免**：hash 一律由 `scan-raw.py` 计算回写；lint 时发现占位符运行 `scan-raw.py --write` 修复
 
 ## 总体执行清单
 
 * [ ] **任务路由确认**：已阅读任务路由，确认当前任务属于正确场景
 * [ ] **Raw Check**: `raw/` 目录中是否包含待处理的新素材（图片/文档）？
-* [ ] **Asset Sync**: `raw/images/` 下的所有图片是否已同步到 `wiki/assets/`？
+* [ ] **Asset Sync**: `raw/images/` 下的所有图片是否已同步到 `wiki/assets/`，且无 basename 冲突？
 * [ ] **Glossary Lock**: 是否已锁定全局术语表，确保翻译不漂移？
 * [ ] **Multimodal Sync**: 图片是否已转化为可编辑的文字解析/Mermaid？
-* [ ] **文件名规范**: 所有 wiki 页面文件是否使用 kebab-case（连字符分隔）命名？
-* [ ] **Wikilink 格式检查**: 所有 `[[文件名|显示文本]]` 链接中的文件名部分是否与实际文件名完全匹配？
+* [ ] **文件名规范**: 是否符合三条硬约束（连字符分隔首字母大写、不含 `--`、裸文件名全局唯一）？
+* [ ] **Frontmatter Check**: `title` 是否填写、YAML 是否合法（否则页面从 web 索引消失）？
+* [ ] **Wikilink 格式检查**: 所有 `[[文件名|显示文本]]` 链接中的文件名部分是否使用连字符形式？
 * [ ] **Wikilink Check**: 所有的核心概念是否都已变成 `[[可点击的链接]]`？
-* [ ] **Marp Check**: 是否为需要汇报的内容生成了幻灯片格式？
+* [ ] **Marp Check**: 综述类文章是否已生成 `visual/` 下的幻灯片？
 * [ ] **Orphan Check**: 是否存在无法从 `INDEX.md` 触达的"孤儿页面"？
 
 ## Linting 检查清单
 
 - [ ] **一致性检查**：扫描 `wiki/`，发现术语冲突时自动统一
 - [ ] **孤岛扫描**：识别没有任何链接指向的页面，强制挂载到导航树
+- [ ] **断链反哺**：web 端可见呈现的断链（BrokenLink）与孤岛扫描同轮修复——补建缺失页面或修正链接目标
+- [ ] **台账漂移检查**：`compile-results.tsv` 出现 `sha256:initial` 等占位 hash 或与实际文件不符时，运行 `python3 -I skills/wikillm/scripts/scan-raw.py --write` 修复
 - [ ] **补丁发布**：当 `raw/` 有新版本时，在对应 Wiki 页面顶部发布摘要
 
 ## 最佳实践提示

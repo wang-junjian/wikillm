@@ -14,21 +14,23 @@
 - [ ] **步骤 5**：自动归档：
   - 将 Q&A 整理为一篇新的 markdown 文章
   - 存入 `wiki/queries/` 目录
-  - 文件名使用 kebab-case，如 `How-to-Do-Something.md`
+  - 文件名遵循三条硬约束（连字符分隔首字母大写、不含 `--`、裸文件名唯一），如 `How-To-Do-Something.md`
   - 在 `INDEX.md` 的"Q&A 归档"部分创建入口
 
 ## Q&A 归档文档的元数据格式
+
+与 [standards.md](standards.md) 的统一 schema 一致：
 
 ```yaml
 ---
 title: "问题标题（用中文）"
 source: "WikiLLM Q&A"
-date: YYYY-MM-DD
 tags:
   - "Q&A"
   - "其他标签"
 question: |
   在这里记录原始问题
+last_updated: YYYY-MM-DD
 ---
 ```
 

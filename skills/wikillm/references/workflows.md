@@ -2,12 +2,11 @@
 
 ## 增量编译检查清单
 
-- [ ] **扫描检查**：运行扫描，检查 `raw/` 目录中是否有新增或修改的文件
-- [ ] **哈希对比**：与 `compile-results.tsv` 中的记录对比，确认变更
+- [ ] **扫描检查**：运行 `python3 -I skills/wikillm/scripts/scan-raw.py`，获取 新增/已修改/未变更/已删除 四类清单
 - [ ] **日志记录**：将检查过程写入 `compile.log`
 - [ ] **只编译变更**：仅处理新增或修改的文件
 - [ ] **更新 frontmatter**：确保新编译的 wiki 文档包含 `raw_sources`
-- [ ] **更新状态文件**：追加/更新 `compile-results.tsv` 中的记录
+- [ ] **更新状态文件**：追加/更新 `compile-results.tsv` 中的记录（hash 必须是真实 SHA-256，禁止占位符）
 - [ ] **更新来源索引**：更新 `sources.md`，添加本次新增的来源
 
 ## 阶段 0：增量检查
@@ -15,13 +14,21 @@
 **任务**：检查 `raw/` 目录下哪些文件需要编译。
 
 **步骤**：
-1. 读取 `wiki/compile-results.tsv`，获取已编译文件的哈希记录
-2. 遍历 `raw/` 目录，计算每个文件的 SHA-256 哈希
-3. 对比哈希值，识别：
-   - **新增文件**：在 `compile-results.tsv` 中不存在的文件
-   - **修改文件**：哈希值与记录不同的文件
-   - **未修改文件**：哈希值相同的文件（跳过编译）
-4. 将检查过程写入 `wiki/compile.log`
+1. 运行扫描脚本：
+
+   ```bash
+   python3 -I skills/wikillm/scripts/scan-raw.py
+   ```
+
+   脚本计算每个 `raw/*.md` 的真实 SHA-256 并与 `wiki/compile-results.tsv` 对比，输出四类清单：
+   - **新增**：台账中不存在的文件 → 需要编译
+   - **已修改**：hash 与记录不同的文件 → 需要重新编译（标注"占位 hash"的先用 `--write` 修复台账再判断）
+   - **未变更**：跳过编译
+   - **已删除**：raw 中已不存在但台账有记录 → 走"来源删除"流程（见阶段 5 之后）
+2. 脚本同时检查 `raw/images/` 内的图片 basename 冲突；有冲突时脚本非零退出，**必须先重命名再进入阶段 0.5**
+3. 将检查结果写入 `wiki/compile.log`
+
+**禁止手工估算或省略 hash**：台账中的 `sha256:initial` 等占位符属于"台账漂移"，由 lint 流程捕获修复。
 
 ## 阶段 0.5：资源同步
 
@@ -34,6 +41,8 @@
 - 使用 `cp -r raw/images/* wiki/assets/` 进行完整同步
 - `raw/images/` 是权威来源，同名文件直接覆盖
 - 保留原始文件名（包括空格和特殊字符）
+
+**唯一性约束**：web 端按 **basename 扁平服务**图片（`/assets/<文件名>`），因此 `raw/images/` 内文件名必须全局唯一。阶段 0 的扫描脚本已检查此约束，发现冲突必须先重命名再同步。
 
 **验证**：确保 `wiki/assets/` 包含 `raw/images/` 中的所有文件
 
@@ -77,7 +86,12 @@
 
 ### 元数据提取
 
-为每篇文档生成 YAML Frontmatter（包含：`tags`, `source`, `raw_sources`, `confidence_score`, `last_updated`）。
+为每篇文档生成 YAML Frontmatter。字段以 [standards.md](standards.md) 的统一 schema 为准（编译页：`title`, `source`, `tags`, `raw_sources`, `confidence_score`, `last_updated`）。
+
+两条 web 端硬约束：
+
+- **`title` 必填**：web 端的索引与侧栏以 `title` 作为显示名
+- **YAML 必须合法**：frontmatter 解析失败的页面会从 web 索引中静默消失
 
 `raw_sources` 字段格式：
 ```yaml
@@ -94,18 +108,23 @@ raw_sources:
 - 消除翻译腔：使用行业专业术语（如将 "Agent" 译为 "智能体"）
 - 添加上下文：为中文读者补充必要的背景知识或行业对比
 
-**可视化输出**：若涉及多步流程或对比，自动生成 **Marp** 格式的幻灯片文件（`.md`），以便在 Obsidian 中演示。
+**可视化输出**：综述类文章必须同步生成 **Marp** 幻灯片（`.md`，存入 `wiki/visual/`）；涉及多步流程或对比时建议生成。注意：`visual/` 仅供 Obsidian 演示，web 端不将其作为 wiki 页面索引。
 
 ## 阶段 3：网络化链接
 
 ### Wikilink 格式规范
 
-- 文件名使用 kebab-case（连字符分隔），例如：`Harness-Engineering.md`
-- Wikilink 格式为 `[[文件名|显示文本]]`，其中**文件名部分必须与实际文件名完全匹配**（不带 .md 扩展名）
+**文件命名三条硬约束**（与 web 端 `WikiSlug`/`WikiIndex` 行为对齐，违反即产生断链或页面消失）：
+
+1. **连字符分隔、单词首字母大写**，与现有产物一致，例如：`Harness-Engineering.md`
+2. **文件名不得包含 `--`**：web 端 slug 用 `--` 编码目录层级，文件名含 `--` 时 URL 不可逆
+3. **wiki 内裸文件名全局唯一**：wikilink 按裸文件名解析（不带目录前缀），不同目录下的同名文件会互相抢链
+
+**Wikilink 格式**：`[[文件名|显示文本]]`，其中**文件名部分使用连字符形式**（不带 .md 扩展名、不带目录前缀）。
 
 **正确示例**：`[[Harness-Engineering|Harness 工程]]`（对应文件 `Harness-Engineering.md`）
 
-**错误示例**：`[[Harness Engineering|Harness 工程]]`（文件名带空格，不匹配实际文件）
+**错误示例**：`[[Harness Engineering|Harness 工程]]`（文件名带空格，Obsidian 中无法匹配实际文件）
 
 ### 文章列表格式
 
@@ -142,3 +161,20 @@ raw_sources:
 **增量更新**：添加本次新增的来源，保持已有来源不变
 
 **分类组织**：按"学术论文"、"概念文章"、"实践指南"等类别合理分组
+
+## 来源删除流程
+
+**触发**：阶段 0 扫描报告的"已删除"清单非空（raw 文件被移除但台账仍有记录）。
+
+**处理**（不删除 wiki 页面，已沉淀的知识保留）：
+
+1. 在该来源对应的每个 wiki 页面顶部添加注记：
+
+   ```markdown
+   > [!warning] [Source Removed]
+   > 本文的原始来源 `raw/xxx.md` 已于 YYYY-MM-DD 从 raw/ 移除，内容不再随来源更新。
+   ```
+
+2. 台账中该行的 `status` 置为 `source-removed`，`hash` 保留最后值
+3. 从 `sources.md` 中移除对应来源条目
+4. 写入 `compile.log`
