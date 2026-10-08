@@ -1,7 +1,7 @@
 ---
 title: "术语表"
 source: "Externalization in LLM Agents: A Unified Review"
-last_updated: 2026-04-11
+last_updated: 2026-10-09
 ---
 
 # 术语表
@@ -231,6 +231,18 @@ last_updated: 2026-04-11
 **中文**: 代码空间搜索  
 **定义**: Meta-Harness 的关键设计选择，将 Harness 优化发生在代码空间中，通过检查执行轨迹推断为什么失败以及哪些早期设计选择导致了失败，而不仅仅是失败本身。
 
+### AutoHarness (自动 Harness 合成)
+**英文**: AutoHarness  
+**中文**: 自动 Harness 合成  
+**定义**: Google DeepMind 提出的框架，让 LLM 通过 Thompson 采样树搜索与环境反馈迭代细化，自动合成约束自身行为的代码 Harness；包含动作过滤器、动作验证器、纯代码策略三种模式。  
+**参见**: [[AutoHarness|AutoHarness：自动合成代码 Harness]]
+
+### Code-as-Policy (代码即策略)
+**英文**: Code-as-Policy  
+**中文**: 代码即策略  
+**定义**: 将整条决策策略蒸馏为纯代码（Python + numpy），推理时不再调用 LLM 的 Harness 形态，推理成本趋近于零。  
+**参见**: [[AutoHarness|AutoHarness：自动合成代码 Harness]]
+
 ### Computational vs Inferential (计算型 vs 推理型)
 **英文**: Computational vs Inferential  
 **中文**: 计算型 vs 推理型  
@@ -350,3 +362,95 @@ last_updated: 2026-04-11
 **中文**: AI 采用的六个阶段  
 **定义**: Mitchell Hashimoto 的采用路径：放弃聊天机器人界面、重现自己的工作、日终智能体、外包确定的任务、工程化 Harness、始终有一个智能体在运行。  
 **参见**: [[Mitchellh-AI-Adoption-Journey|Mitchell Hashimoto 的 AI 采用之旅]]
+
+## Harness 自动进化与治理
+
+### Harness-Level Forgetting (Harness 级遗忘)
+**英文**: Harness-Level Forgetting  
+**中文**: Harness 级遗忘  
+**定义**: Harness 持续更新时破坏先前可靠行为的现象——即使模型冻结，harness 的变更也可能导致已习得能力退化。  
+**参见**: [[Harness-Continual-Learning|Harness Continual Learning：围绕冻结模型的 Harness 持续进化]]
+
+### Guarded Harness Evolution (受控 Harness 演化)
+**英文**: Guarded Harness Evolution  
+**中文**: 受控 Harness 演化  
+**定义**: 将更新生成与状态提交分离的机制：优化器提议候选 harness，评估器在确认当前改进、历史保持与有效性后才提交。  
+**参见**: [[Harness-Continual-Learning|Harness Continual Learning：围绕冻结模型的 Harness 持续进化]]
+
+### Failure Signature (失败签名)
+**英文**: Failure Signature  
+**中文**: 失败签名  
+**定义**: 对失败轨迹聚类归纳出的可复现失败模式标识，用于驱动有针对性的 Harness 修复而非盲目重写。  
+**参见**: [[Self-Harness|Self-Harness：自我改进的 Harness]]
+
+### Evidence Bundle (证据包)
+**英文**: Evidence Bundle  
+**中文**: 证据包  
+**定义**: 围绕一次失败收集的轨迹片段、环境反馈与上下文集合，作为 Harness 修复提案的输入。  
+**参见**: [[Self-Harness|Self-Harness：自我改进的 Harness]]
+
+### Harness Annealing (Harness 退火)
+**英文**: Harness Annealing  
+**中文**: Harness 退火  
+**定义**: 随训练进程逐步收紧 Harness 辅助强度的策略，使智能体从强脚手架平滑过渡到自主决策。  
+**参见**: [[EvoHarness-RL|EvoHarness-RL：用强化学习训练可自我进化的运行时 Harness]]
+
+### Change Manifest (变更清单)
+**英文**: Change Manifest  
+**中文**: 变更清单  
+**定义**: 为每次 Harness 编辑记录的证据-根因-修复-预测条目，构成轮间可证伪、可回滚的契约。  
+**参见**: [[Agentic-Harness-Engineering|AHE：可观测性驱动的编码智能体 Harness 自动进化]]
+
+### Experience Observability (经验可观测性)
+**英文**: Experience Observability  
+**中文**: 经验可观测性  
+**定义**: 将数百万 token 原始轨迹蒸馏为分层可钻取证据语料、供进化智能体直接消费的能力。  
+**参见**: [[Agentic-Harness-Engineering|AHE：可观测性驱动的编码智能体 Harness 自动进化]]
+
+### Operational Mirror (操作镜像)
+**英文**: Operational Mirror  
+**中文**: 操作镜像  
+**定义**: HarnessX 中对智能体运行时行为的可复现镜像表示，使 Harness 变体可以在隔离环境中对照评估。  
+**参见**: [[HarnessX|HarnessX：可组合、自适应、可进化的智能体 Harness 铸造厂]]
+
+### PEV Control Loop (PEV 控制环)
+**英文**: Plan-Execute-Verify Control Loop  
+**中文**: PEV 控制环  
+**定义**: 规划-执行-验证的控制循环，将智能体行为组织为可被代码检查点约束的阶段式流程。  
+**参见**: [[Code-as-Agent-Harness|Code as Agent Harness：迈向可执行、可验证、有状态的智能体系统]]
+
+### Pressure Profile (压力剖面)
+**英文**: Pressure Profile  
+**中文**: 压力剖面  
+**定义**: 刻画任务对智能体系统各维度（上下文、工具、记忆、验证）压力分布的分析工具，用于选型与配对。  
+**参见**: [[Agent-System-Harness-Design-Survey|从问答到任务完成：智能体系统与 Harness 设计综述]]
+
+### Model-Harness Pairing (模型—Harness 配对)
+**英文**: Model-Harness Pairing  
+**中文**: 模型—Harness 配对  
+**定义**: 为特定基础模型选择与之能力互补的 Harness 设计的实践，同一 Harness 在不同模型上效果差异显著。  
+**参见**: [[Agent-System-Harness-Design-Survey|从问答到任务完成：智能体系统与 Harness 设计综述]]
+
+### Harness Rot (Harness 腐烂)
+**英文**: Harness Rot  
+**中文**: Harness 腐烂  
+**定义**: Harness 随模型升级与环境漂移逐渐失效的现象——昨天最优的脚手架可能成为今天的约束。  
+**参见**: [[State-of-AI-Harness-Engineering-2026|AI Harness 工程行业现状 2026]]
+
+### Ratchet Principle (棘轮原则)
+**英文**: Ratchet Principle  
+**中文**: 棘轮原则  
+**定义**: Harness 改进只进不退的原则：每次变更必须通过验证门禁才能合入，防止质量回滑。  
+**参见**: [[Building-AI-Agent-Harnesses-Guide|构建 AI 智能体 Harness 完全指南]]
+
+### Scoped Identity (作用域身份)
+**英文**: Scoped Identity  
+**中文**: 作用域身份  
+**定义**: 为每个智能体（而非人类操作者）分配最小权限身份的原语，使行为可归因、可撤销。  
+**参见**: [[Agent-Harness-Platform-Playbook|智能体 Harness 工程：2026 平台团队手册]]
+
+### First-Pass Success Rate (首次通过率)
+**英文**: First-Pass Success Rate  
+**中文**: 首次通过率  
+**定义**: 智能体无需人工返工即通过评审/测试的任务占比，是衡量 Harness 质量的核心工程指标。  
+**参见**: [[Harness-Engineering-Coding-Agents-Guide|Harness 工程实践指南：构建更可靠的 AI 编码智能体]]

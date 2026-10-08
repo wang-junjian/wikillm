@@ -313,6 +313,7 @@ TerminalBench-2 搜索日志揭示了一个清晰的叙事弧线，其中提议�
 ## 相关研究
 
 - [[Harness-Engineering|Harness 工程]]
+- [[AutoHarness|AutoHarness：自动合成代码 Harness]] - Google DeepMind 的轻量替代路线：基础模型在环境反馈闭环中直接合成自己的 Harness
 - [[Managed-Agents-Decoupling-Brain-from-Hands|Managed Agents：将大脑与手分离]]
 - [[Externalization-in-LLM-Agents|LLM Agent 中的外部化]]
 
