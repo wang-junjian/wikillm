@@ -20,6 +20,12 @@ last_updated: 2026-10-09
 - [From Question Answering to Task Completion: A Survey on Agent System and Harness Design](https://arxiv.org/abs/2606.20683)
 - [Harness Continual Learning: Continual Adaptation Beyond Model Parameters](https://arxiv.org/abs/2608.19013)
 - [AutoHarness: Improving LLM Agents by Automatically Synthesizing a Code Harness](https://arxiv.org/abs/2603.03329)
+- [AI Harness Engineering: A Runtime Substrate for Foundation-Model Software Agents](https://arxiv.org/abs/2605.13357)
+- [The Last Harness You'll Ever Build](https://arxiv.org/abs/2604.21003)
+- [Harness-R1: Learning to Edit Executable Runtime Harnesses from Agent Failure Trajectories](https://arxiv.org/abs/2608.02276)
+- [HarnessForge: Joint Harness and Policy Evolution for Adaptive Agent Systems](https://arxiv.org/abs/2606.01779)
+- [Natural-Language Agent Harnesses](https://arxiv.org/abs/2603.25723)
+- [How Much Heavy Lifting Can an Agent Harness Do?](https://arxiv.org/abs/2604.07236)
 
 ## 概念文章
 
@@ -28,6 +34,11 @@ last_updated: 2026-10-09
 - [Harness Engineering: The Complete Guide to Building Systems That Make AI Agents Actually Work (2026)](https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026)
 - [The State Of AI Harness Engineering 2026](https://marmelab.com/blog/2026/09/24/the-state-of-ai-harness-engineering-2026.html)
 - [What Is Harness Engineering? The Definitive 2026 Guide](https://atlan.com/know/what-is-harness-engineering/)
+- [What is an AI Agent Harness? (Databricks)](https://www.databricks.com/blog/ai-harness)
+- [The Importance of Agent Harness (Philipp Schmid)](https://www.philschmid.de/agent-harness-2026)
+- [Harness Engineering for Self-Improvement (Lilian Weng)](https://lilianweng.github.io/posts/2026-07-04-harness/)
+- [Agent Harness Engineering (Addy Osmani)](https://addyosmani.com/blog/agent-harness-engineering/)
+- [The Anatomy of an Agent Harness (LangChain)](https://blog.langchain.com/the-anatomy-of-an-agent-harness/)
 
 ## 实践指南
 
@@ -40,3 +51,4 @@ last_updated: 2026-10-09
 - [Harness engineering: A guide to building better AI coding agents](https://www.faros.ai/blog/harness-engineering)
 - [Harness Engineering: The Complete Guide to Building AI Agent Harnesses](https://amux.io/guides/harness-engineering/)
 - [Agent Harness Engineering: Platform Playbook for 2026](https://www.puppyone.ai/en/blog/agent-harness-engineering-platform-team-playbook)
+- [Skill Issue: Harness Engineering for Coding Agents (HumanLayer)](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)

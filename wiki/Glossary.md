@@ -454,3 +454,139 @@ last_updated: 2026-10-09
 **中文**: 首次通过率  
 **定义**: 智能体无需人工返工即通过评审/测试的任务占比，是衡量 Harness 质量的核心工程指标。  
 **参见**: [[Harness-Engineering-Coding-Agents-Guide|Harness 工程实践指南：构建更可靠的 AI 编码智能体]]
+
+## Harness 自动进化与可学习组件
+
+### Harness Evolution Loop (Harness 进化循环)
+**英文**: Harness Evolution Loop  
+**中文**: Harness 进化循环  
+**定义**: Worker 执行、Evaluator 对抗式诊断打分、Evolution Agent 基于完整历史修改 Harness 的单任务闭环。  
+**参见**: [[Harness-Evolution-Loop|Harness 进化循环：你最后需要构建的 Harness]]
+
+### Meta-Evolution (元进化)
+**英文**: Meta-Evolution  
+**中文**: 元进化  
+**定义**: 跨任务优化进化协议以加速新任务上 Harness 收敛的外层循环，对应元学习的外循环。  
+**参见**: [[Harness-Evolution-Loop|Harness 进化循环：你最后需要构建的 Harness]]
+
+### Harness–Policy Pair (Harness–策略对)
+**英文**: Harness–Policy Pair  
+**中文**: Harness–策略对  
+**定义**: 把外部执行 Harness 与内部推理策略耦合为智能体系统适配基本单位的联合优化视角。  
+**参见**: [[HarnessForge|HarnessForge：Harness 与策略的联合进化]]
+
+### Executable Compatibility (可执行兼容性)
+**英文**: Executable Compatibility  
+**中文**: 可执行兼容性  
+**定义**: Harness 暴露的接口与策略实际执行能力之间的匹配程度，决定联合系统的真实收益。  
+**参见**: [[HarnessForge|HarnessForge：Harness 与策略的联合进化]]
+
+### Harness Engineer (Harness 工程师)
+**英文**: Harness Engineer  
+**中文**: Harness 工程师  
+**定义**: 专职生成可执行运行时补丁的可训练模型，与冻结目标智能体分离，只从补丁重跑结果学习。  
+**参见**: [[Harness-R1|Harness-R1：从智能体失败轨迹学习编辑可执行运行时 Harness]]
+
+### Lifecycle Hook (生命周期钩子)
+**英文**: Lifecycle Hook  
+**中文**: 生命周期钩子  
+**定义**: Harness 补丁可介入的执行位置（如 on_init、pre-action、post-step），是可学习编辑的结构化挂点。  
+**参见**: [[Harness-R1|Harness-R1：从智能体失败轨迹学习编辑可执行运行时 Harness]]
+
+### Failure Packet (失败包)
+**英文**: Failure Packet  
+**中文**: 失败包  
+**定义**: 从失败轨迹确定性抽取的压缩证据（任务约束、动作-观察片段、结局、环境状态），作为 Harness 编辑器的输入。  
+**参见**: [[Harness-R1|Harness-R1：从智能体失败轨迹学习编辑可执行运行时 Harness]]
+
+### Natural-Language Agent Harness (自然语言智能体 Harness)
+**英文**: Natural-Language Agent Harness (NLAH)  
+**中文**: 自然语言智能体 Harness  
+**定义**: 以结构化自然语言承载 Harness 编排逻辑（契约、角色、阶段、适配器、状态语义、失败分类）的可执行制品。  
+**参见**: [[Natural-Language-Agent-Harnesses|Natural-Language Agent Harnesses：用自然语言编写可执行的 Harness]]
+
+### Intelligent Harness Runtime (智能 Harness 运行时)
+**英文**: Intelligent Harness Runtime (IHR)  
+**中文**: 智能 Harness 运行时  
+**定义**: 环内置 LLM、通过显式契约与持久制品直接解释执行 NLAH 的共享运行时。  
+**参见**: [[Natural-Language-Agent-Harnesses|Natural-Language Agent Harnesses：用自然语言编写可执行的 Harness]]
+
+### Declarative Reflective Runtime Protocol (声明式反思运行时协议)
+**英文**: Declarative Reflective Runtime Protocol  
+**中文**: 声明式反思运行时协议  
+**定义**: 把预测、对账、置信追踪与守卫修正显式声明为可检查运行时结构的协议，使 LLM 干预的边际角色可被直接测量。  
+**参见**: [[Harness-Heavy-Lifting|Harness 能承担多少重担：自我修正智能体能力来源的经验分解]]
+
+### Sparse LLM Revision (稀疏 LLM 修正)
+**英文**: Sparse LLM Revision  
+**中文**: 稀疏 LLM 修正  
+**定义**: 仅在置信门打开时把修正委派给 LLM 的按需干预模式，把 LLM 留给声明式基座解决不了的残差。  
+**参见**: [[Harness-Heavy-Lifting|Harness 能承担多少重担：自我修正智能体能力来源的经验分解]]
+
+## Harness 工程实践与治理
+
+### Autonomy Gap (自主鸿沟)
+**英文**: Autonomy Gap  
+**中文**: 自主鸿沟  
+**定义**: 模型表面编码能力与完整系统在无人工替代运行时帮助下完成软件任务能力之间的差距。  
+**参见**: [[Harness-Runtime-Substrate|AI Harness 工程：基础模型软件智能体的运行时基座]]
+
+### Episode Package (Episode 包)
+**英文**: Episode Package  
+**中文**: Episode 包  
+**定义**: 一次智能体运行沉淀的可审计记录，含轨迹、补丁、验证报告与结局记录。  
+**参见**: [[Harness-Runtime-Substrate|AI Harness 工程：基础模型软件智能体的运行时基座]]
+
+### Agent Sprawl (智能体蔓延)
+**英文**: Agent Sprawl  
+**中文**: 智能体蔓延  
+**定义**: 企业内智能体无统一 Harness 标准导致无法集中治理、评估与改进的失控状态。  
+**参见**: [[What-Is-an-AI-Agent-Harness|什么是 AI 智能体 Harness：Databricks 的概念解析]]
+
+### Context Rot (Context 腐烂)
+**英文**: Context Rot  
+**中文**: Context 腐烂  
+**定义**: 对话历史膨胀、低质量内容填满上下文窗口导致模型推理质量退化的失效模式。  
+**参见**: [[Anatomy-of-an-Agent-Harness|智能体 Harness 解剖学：LangChain 的组件推导框架]]
+
+### Context Firewall (上下文防火墙)
+**英文**: Context Firewall  
+**中文**: 上下文防火墙  
+**定义**: 子智能体隔离中间噪声、保护父编排线程上下文窗口的机制。  
+**参见**: [[Harness-Configuration-Skill-Issue|编码智能体的 Harness 配置实战：HumanLayer 的五大配置面]]
+
+### Durability (耐久性)
+**英文**: Durability  
+**中文**: 耐久性  
+**定义**: 模型在长程任务中执行数百次工具调用后仍遵循指令的能力，是榜单分数无法体现的 Harness 价值维度。  
+**参见**: [[Importance-of-Agent-Harness|Harness 的重要性：Philipp Schmid 论 2026 年的智能体基础设施]]
+
+### Build to Delete (为删除而建)
+**英文**: Build to Delete  
+**中文**: 为删除而建  
+**定义**: Harness 架构保持模块化、随时可撕掉旧逻辑以适配新模型能力的设计原则。  
+**参见**: [[Importance-of-Agent-Harness|Harness 的重要性：Philipp Schmid 论 2026 年的智能体基础设施]]
+
+### Harness-as-a-Service (Harness 即服务)
+**英文**: Harness-as-a-Service (HaaS)  
+**中文**: Harness 即服务  
+**定义**: 从 LLM API（一次补全）转向 Harness API（一个运行时）的构建范式，如 Claude Agent SDK、Codex SDK。  
+**参见**: [[Agent-Harness-Engineering-Osmani|智能体 Harness 工程：Addy Osmani 的框架综述]]
+
+### Disposable Harness (一次性 Harness)
+**英文**: Disposable Harness  
+**中文**: 一次性 Harness  
+**定义**: 为单个工作流临时构建、用完即弃的轻量 Harness。  
+**参见**: [[What-Is-an-AI-Agent-Harness|什么是 AI 智能体 Harness：Databricks 的概念解析]]
+
+### Darwin Gödel Machine (达尔文哥德尔机)
+**英文**: Darwin Gödel Machine (DGM)  
+**中文**: 达尔文哥德尔机  
+**定义**: 允许编码智能体修改自身 Harness 代码仓库的开放式进化系统。  
+**参见**: [[Harness-Engineering-Self-Improvement|Harness 工程与自我改进：Lilian Weng 的框架]]
+
+### Meta-Methodology (元方法论)
+**英文**: Meta-Methodology  
+**中文**: 元方法论  
+**定义**: 改进"得到更好答案的机器"而非答案本身的优化方向，是递归自我改进的核心立场。  
+**参见**: [[Harness-Engineering-Self-Improvement|Harness 工程与自我改进：Lilian Weng 的框架]]

@@ -35,6 +35,10 @@ last_updated: 2026-10-09
 - [[Harness-Engineering-First-Thoughts|Harness 工程：最初的思考]] - Martin Fowler 团队的早期备忘录
 - [[State-of-AI-Harness-Engineering-2026|AI Harness 工程行业现状 2026]] - marmelab 的行业盘点与警示
 - [[Agent-System-Harness-Design-Survey|从问答到任务完成：智能体系统与 Harness 设计综述]] - 智能体系统设计的全景综述
+- [[What-Is-an-AI-Agent-Harness|什么是 AI 智能体 Harness：Databricks 的概念解析]] - Agent = Model + Harness 的企业视角定义与八大构件
+- [[Anatomy-of-an-Agent-Harness|智能体 Harness 解剖学：LangChain 的组件推导框架]] - 从模型能力边界倒推 Harness 各组件的必然性
+- [[Importance-of-Agent-Harness|Harness 的重要性：Philipp Schmid 论 2026 年的智能体基础设施]] - 榜单幻觉、耐久性问题与"为删除而建"准则
+- [[Agent-Harness-Engineering-Osmani|智能体 Harness 工程：Addy Osmani 的框架综述]] - 棘轮原则、Harness 迁移规律与 HaaS 趋势
 
 ### 4. Harness 自动合成与进化
 - [[Meta-Harness|Meta-Harness：模型 Harness 的端到端优化]] - 斯坦福/MIT 的自动 Harness 优化研究
@@ -45,6 +49,13 @@ last_updated: 2026-10-09
 - [[HarnessX|HarnessX：可组合、自适应、可进化的智能体 Harness 铸造厂]] - Darwin Agent Team 的 Harness 铸造厂
 - [[Harness-Continual-Learning|Harness Continual Learning：围绕冻结模型的 Harness 持续进化]] - 南京大学提出的 HCL 新范式
 - [[Code-as-Agent-Harness|Code as Agent Harness：迈向可执行、可验证、有状态的智能体系统]] - UIUC/Meta/Stanford 的代码基底立场论文
+- [[Harness-Runtime-Substrate|AI Harness 工程：基础模型软件智能体的运行时基座]] - 十一项组件职责、H0–H3 可见性阶梯与 episode 包评估协议
+- [[Harness-Evolution-Loop|Harness 进化循环：你最后需要构建的 Harness]] - Sylph.AI 的内层进化 + 外层元进化两级自动化框架
+- [[Harness-R1|Harness-R1：从智能体失败轨迹学习编辑可执行运行时 Harness]] - 上海交大/小红书的可学习 Harness 编辑器（GRPO）
+- [[HarnessForge|HarnessForge：Harness 与策略的联合进化]] - 北航/清华的 Harness–策略对协同演化框架
+- [[Natural-Language-Agent-Harnesses|Natural-Language Agent Harnesses：用自然语言编写可执行的 Harness]] - NLAH + IHR 共享运行时
+- [[Harness-Heavy-Lifting|Harness 能承担多少重担：自我修正智能体能力来源的经验分解]] - LLM 与显式结构的边际贡献测量方法论
+- [[Harness-Engineering-Self-Improvement|Harness 工程与自我改进：Lilian Weng 的框架]] - 以递归自我改进为坐标系的优化对象阶梯
 
 ### 5. 实践指南
 - [[Long-Running-Harness-Design|长运行应用的 Harness 设计]] - Anthropic 团队的多 Agent 架构实践
@@ -56,6 +67,7 @@ last_updated: 2026-10-09
 - [[Harness-Engineering-Coding-Agents-Guide|Harness 工程实践指南：构建更可靠的 AI 编码智能体]] - Faros 的五层架构与度量体系
 - [[Building-AI-Agent-Harnesses-Guide|构建 AI 智能体 Harness 完全指南]] - amux 的十组件与六步构建流程
 - [[Agent-Harness-Platform-Playbook|智能体 Harness 工程：2026 平台团队手册]] - PuppyOne 的五原语平台治理框架
+- [[Harness-Configuration-Skill-Issue|编码智能体的 Harness 配置实战：HumanLayer 的五大配置面]] - AGENTS.md/MCP/Skills/子智能体/Hooks 实战与"不是模型问题，是配置问题"
 
 ## 学习路径
 
@@ -82,6 +94,10 @@ last_updated: 2026-10-09
 - Harness 自我进化谱系（[[Self-Harness|Self-Harness]]、[[EvoHarness-RL|EvoHarness-RL]]、[[Agentic-Harness-Engineering|AHE]]、[[HarnessX|HarnessX]]）
 - Harness 持续学习与遗忘治理（[[Harness-Continual-Learning|HCL]]）
 - 平台化 Harness 治理（[[Agent-Harness-Platform-Playbook|平台团队手册]]）
+- Harness 作为运行时基座与可学习组件（[[Harness-Runtime-Substrate|运行时基座]]、[[Harness-R1|Harness-R1]]、[[HarnessForge|HarnessForge]] 联合进化）
+- Harness 的两级自动化与自我改进（[[Harness-Evolution-Loop|进化循环与元进化]]、[[Harness-Engineering-Self-Improvement|Lilian Weng 的 RSI 框架]]）
+- Harness 的表达能力与测量（[[Natural-Language-Agent-Harnesses|自然语言 Harness]]、[[Harness-Heavy-Lifting|能力来源分解]]）
+- Harness 概念框架与配置实战（[[Anatomy-of-an-Agent-Harness|LangChain 解剖学]]、[[Agent-Harness-Engineering-Osmani|Osmani 框架]]、[[Harness-Configuration-Skill-Issue|HumanLayer 五大配置面]]）
 
 ## Q&A 归档
 
