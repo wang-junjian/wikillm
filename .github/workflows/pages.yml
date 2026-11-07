@@ -1,0 +1,74 @@
+name: Deploy WikiLLM web to Pages
+
+# 仓库只提交源码与 wiki 内容：站点是 web/ 的 Next.js 静态导出产物，
+# 由本工作流在每次 push 到 main 时从源码重建并发布，产物同样不入库。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时刻只允许一个部署在跑，且不取消进行中的部署（避免站点短暂空档）。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PAGES_BASE_PATH: /wikillm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+        working-directory: web
+      - run: npm test
+        working-directory: web
+      - run: npx tsc --noEmit
+        working-directory: web
+
+      # 静态导出：页面在构建期从 wiki/ 预渲染，Route Handler 不参与导出
+      # （next.config.ts 的 pageExtensions 收窄到 .tsx），图片下步复制为静态文件。
+      - name: Build static export
+        run: npm run build
+        working-directory: web
+
+      - name: Assemble offline site
+        run: |
+          mkdir -p site
+          cp -R web/out/. site/
+          cp -R wiki/assets site/assets
+          # 论文抓取的 SVG 缺 xmlns / viewbox 小写，<img> 会拒绝解码（200 但破图）。
+          # 只规范化产物副本，仓库里的 wiki/assets 源素材不动。
+          node web/scripts/normalize-svg.mjs site/assets
+          touch site/.nojekyll
+          printf 'Build of commit %s\n' "$GITHUB_SHA" > site/build.txt
+
+      # 静态站点没有服务端兜底：逐个解析 HTML 的 href/src，确认都命中产物文件
+      # （含 wiki/assets 里带空格、以 %20 引用的图片），不通过则禁止上传。
+      - name: Verify pages artifact
+        run: node web/scripts/verify-pages.mjs site
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

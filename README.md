@@ -1,5 +1,9 @@
 # WikiLLM
 
+> **在线访问 / Web**：<https://wangjunjian.com/wikillm/> — `web/` 应用在 GitHub Pages 上的静态导出版本，打开即看、零安装。
+>
+> **备用地址 / Fallback**：<https://wang-junjian.github.io/wikillm/>（GitHub Pages 官方入口，会自动跳转到上面的自定义域；主站域名变更时仍可访问）。
+
 利用 LLM 构建个人知识库的系统。WikiLLM 将原始素材"编译"成结构化、交叉链接的高质量中文 Wiki，可在 Obsidian 中查看。
 
 本项目基于 **Andrej Karpathy** 提出的理念构建。详见：[LLM Knowledge Bases](https://x.com/karpathy/status/2039805659525644595)
@@ -89,6 +93,14 @@ npm run dev
 - 侧边栏导航，按分类组织页面
 - 图片资源支持
 - 响应式设计
+
+#### 在线部署
+
+线上版本由 `.github/workflows/pages.yml` 在 push 到 `main` 时自动构建并发布：`npm ci → npm test → tsc --noEmit → PAGES_BASE_PATH=/wikillm npm run build → 产物自检 → upload-pages-artifact → deploy-pages`，也可在 Actions 里手动 `workflow_dispatch` 重跑。仓库只提交源码与 wiki 内容，`web/out/`、`site/` 等构建产物不入库。
+
+自定义域来自用户站点仓库 `wang-junjian/wang-junjian.github.io` 已绑定的 `wangjunjian.com`：本仓库启用 Pages 后，项目站点自动挂到该域的 `/wikillm/` 路径下。**本仓库不配置 CNAME、不改动域名或 DNS。** 部署走官方 `actions/deploy-pages`。
+
+线上是 `web/` 同一个 Next.js 应用的静态导出（`output: 'export'`）：React 组件、UI 与客户端导航不变，区别只在 wiki 内容从「请求时读 `wiki/`」变成「构建期预渲染」，因此 wiki 更新需 push 触发重建；本地 `npm run dev` 仍是实时读 `wiki/` 的运行时应用（rewrites + `/api/assets` 图片路由保留）。上传前的 `web/scripts/verify-pages.mjs` 会逐条解析 HTML 里的 `href`/`src`，确认所有内部链接与图片都命中产物文件。`web/scripts/normalize-svg.mjs` 另在产物副本上补齐论文抓取 SVG 缺失的 `xmlns` / `viewBox`（`wiki/assets` 源素材不动）—— 缺了这两项时浏览器会在 `<img>` 里拒绝解码，HTTP 200 却显示破图。
 
 ### 使用技能
 

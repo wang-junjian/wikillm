@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -118,5 +118,23 @@ describe('WikiIndex.render', () => {
     const page = await index.render('INDEX')
 
     expect(page!.frontmatter.last_updated).toBe('2026-10-01')
+  })
+
+  it('Pages 子路径：设置前缀后链接与图片都带 /wikillm', async () => {
+    vi.stubEnv('NEXT_PUBLIC_BASE_PATH', '/wikillm')
+    vi.resetModules()
+    try {
+      const { createWikiIndex } = await import('../lib/wiki-index')
+      const index = createWikiIndex(FIXTURE_ROOT)
+      const page = await index.render('concepts--Foo')
+
+      expect(page!.html).toContain('href="/wikillm/wiki/concepts--Bar/"')
+      expect(page!.html).toContain('src="/wikillm/assets/pic.png"')
+      expect(page!.html).not.toContain('href="/wiki/')
+      expect(page!.html).not.toContain('src="/assets/')
+    } finally {
+      vi.unstubAllEnvs()
+      vi.resetModules()
+    }
   })
 })

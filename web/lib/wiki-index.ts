@@ -52,6 +52,16 @@ interface ScanResult {
 // 与 skill 约定一致：assets（图片）与 visual（Marp 幻灯片）不是 wiki 页面
 const EXCLUDED_DIRS = new Set(['assets', 'visual'])
 
+/**
+ * 项目 Pages 挂在 /wikillm/ 子路径下，markdown 渲染出的裸 URL 必须带前缀。
+ * 前缀由 next.config.ts 的 env 在构建期注入；本地 dev 与测试为空，路径保持原样。
+ * trailingSlash 只在 Pages 构建开启，故页面链接同时补尾斜杠以直接命中 index.html。
+ */
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+const pageUrl = (slug: string) =>
+  BASE_PATH ? `${BASE_PATH}/wiki/${slug}/` : `/wiki/${slug}`
+const assetUrl = (filename: string) => `${BASE_PATH}/assets/${filename}`
+
 // 断链在 markdown 阶段以哨兵链接的形式存在（sanitize 会剥离 raw HTML，
 // 链接则能安全通过），remark 输出后再还原为可见样式的 span
 const BROKEN_LINK_PREFIX = '#wikillm-broken:'
@@ -147,7 +157,7 @@ export function createWikiIndex(root: string): WikiIndex {
           brokenLinks.push({ target, label: linkLabel })
           return `[${linkLabel}](${BROKEN_LINK_PREFIX}${encodeURIComponent(target)})`
         }
-        return `[${linkLabel}](/wiki/${actualSlug})`
+        return `[${linkLabel}](${pageUrl(actualSlug)})`
       },
     )
     return { processed, brokenLinks }
@@ -159,7 +169,7 @@ export function createWikiIndex(root: string): WikiIndex {
       (match, alt: string, imgPath: string) => {
         if (/^https?:\/\//.test(imgPath)) return match
         // 与 skill 的「assets 扁平同步」约定对应：图片按文件名从 /assets 服务
-        return `![${alt}](/assets/${path.posix.basename(imgPath)})`
+        return `![${alt}](${assetUrl(path.posix.basename(imgPath))})`
       },
     )
   }

@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 .DS_Store
 .obsidian
+
+# GitHub Pages 发布目录：由 .github/workflows/pages.yml 从源码重建，不入库
+site/
